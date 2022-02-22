@@ -1,4 +1,6 @@
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+//import 'package:flutter/src/material/material_state.dart';
 
 void main() {
   runApp(const MyApp());
@@ -78,7 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
+
+        child:
+
+         Column(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -93,22 +98,17 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'Anonymous Login\nUniversity of Windsor',
-                textAlign: TextAlign.center,
-             // style: TextStyle(fontSize: 25),
-              style: TextStyle (
-                  height: 2,
-                  fontSize: 25,
-                  color: Colors.lightBlue,
-                  fontWeight: FontWeight.bold,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
 
-              )
+            const Text(
+              '\n\n\n\n',
             ),
-            Text(
-              '\n\n\n\n\nH i m a n i   R a v a l\nA l i n a   N o o r',
+
+            Image.asset('assets/images/UofW_logo_3.jpeg'),
+            
+            const Text(
+              'H i m a n i   R a v a l\nA l i n a   N o o r\nCOMP 4990B\n',
                 textAlign: TextAlign.center,
               // style: TextStyle(fontSize: 25),
               style: TextStyle (
@@ -116,31 +116,77 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontSize: 15,
                   fontStyle: FontStyle.italic)
             ),
-           /* ElevatedButton(
-              onPressed: (){
+            ElevatedButton(
+              style: ButtonStyle (
+                elevation: MaterialStateProperty.all(10),
+                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                    return Colors.blueGrey.shade200;
+                  },
+                ), //bg color
+              ),
+              onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const AppPage()),
-                ); },
-              const Text('Launch App'),
-            ),*/
+                );
+              },
+              child: const Text('     Log In     '),),
+
+            const Text(
+              '\n\n\n\n\n\n\n\n',
+            ),
+
+            ElevatedButton(
+              //backgroundColor: const Color(0xFFCDDC39),
+              style: ButtonStyle (
+                elevation: MaterialStateProperty.all(10),
+                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                    /* if (states.contains(MaterialState.pressed)) {
+                      return Colors.teal.shade100;
+                    }
+                    //source: https://flutterforyou.com/how-to-change-the-color-of-elevatedbutton-in-flutter/
+                    else {*/
+                    return Colors.teal.shade300;
+                    //}
+                  },
+                ), //bg color
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AppPage()),
+                );
+              }, //onPressed
+
+              child: const Text('Anonymous Login ->'),
+            ),
           ],
         ),
+       /* child: ElevatedButton(
+          onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AppPage()),
+            ); },
+          //const Text('Launch App'),
+        ),*/
 
      ),
-      floatingActionButton: FloatingActionButton(
+      /*floatingActionButton: FloatingActionButton(
         /*onPressed: _incrementCounter, /******* INSERT NEW SCREEN HERE ******/
         tooltip: 'Increment',*/
           elevation: 0.0,
-          child: Icon(Icons.double_arrow_outlined),
-          backgroundColor: Color(0xFFCDDC39),
+          child: const Icon(Icons.double_arrow_outlined),
+          backgroundColor: const Color(0xFFCDDC39),
           onPressed: () {
               Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const AppPage()),
             ); }
         //child: const Icon(Icons.check),
-     ), // This trailing comma makes auto-formatting nicer for build methods.
+     ), */// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
@@ -155,12 +201,17 @@ class AppPage extends StatelessWidget {
         title: const Text('Moody'),
       ),
       body: Center(
-        child: ElevatedButton( /////THIS IS A BUTTON
-          onPressed: () {
-            // Navigate back to first route when tapped.
-          },
-          child: const Text('Second Page!'),
-        ),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton( /////THIS IS A BUTTON
+                onPressed: () {
+                  // Navigate back to first route when tapped.
+                },
+                child: const Text('Submit Answers'),
+                ),
+             ]
+        )
       ),
     );
   }
