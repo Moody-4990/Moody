@@ -50,18 +50,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-     // _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
 
-        child:
-
-         Column(
+        child: Column(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -101,12 +87,14 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
 
-            const Text(
+            const Text( //to align the uwindsor image below.
               '\n\n\n\n',
             ),
 
+            //uwindsor image
             Image.asset('assets/images/UofW_logo_3.jpeg'),
-            
+
+            /*-----------TO BE EDITED AT A LATER DATE-IF DEEMED UNNECESSARY--------*/
             const Text(
               'H i m a n i   R a v a l\nA l i n a   N o o r\nCOMP 4990B\n',
                 textAlign: TextAlign.center,
@@ -116,6 +104,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontSize: 15,
                   fontStyle: FontStyle.italic)
             ),
+
+            /* ADD THE LOGIN TEXT SPACE HERE */
+
+            /*----LOG IN BUTTON HERE----*/
             ElevatedButton(
               style: ButtonStyle (
                 elevation: MaterialStateProperty.all(10),
@@ -129,6 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const AppPage()),
+                  /*currently goes to the next page regardless. To be edited after connecting with Firebase*/
                 );
               },
               child: const Text('     Log In     '),),
@@ -137,6 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '\n\n\n\n\n\n\n\n',
             ),
 
+            /*----Anonymous Login Button----*/
             ElevatedButton(
               //backgroundColor: const Color(0xFFCDDC39),
               style: ButtonStyle (
@@ -164,33 +158,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
-       /* child: ElevatedButton(
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AppPage()),
-            ); },
-          //const Text('Launch App'),
-        ),*/
 
      ),
-      /*floatingActionButton: FloatingActionButton(
-        /*onPressed: _incrementCounter, /******* INSERT NEW SCREEN HERE ******/
-        tooltip: 'Increment',*/
-          elevation: 0.0,
-          child: const Icon(Icons.double_arrow_outlined),
-          backgroundColor: const Color(0xFFCDDC39),
-          onPressed: () {
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AppPage()),
-            ); }
-        //child: const Icon(Icons.check),
-     ), */// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
 
+/*------ SECOND SCREEN WHERE ANSWERS WILL BE RECORDED------*/
 class AppPage extends StatelessWidget {
   const AppPage({Key? key}) : super(key: key);
 
