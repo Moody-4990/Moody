@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'dart:io';
+
 //import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/src/material/material_state.dart';
@@ -5,6 +8,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -50,7 +54,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -123,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(builder: (context) => const AppPage()),
                   /*currently goes to the next page regardless. To be edited after connecting with Firebase*/
                 );
-              },
+              }, //onPressed
               child: const Text('     Log In     '),),
 
             const Text(
@@ -137,13 +140,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 elevation: MaterialStateProperty.all(10),
                 backgroundColor: MaterialStateProperty.resolveWith<Color>(
                       (Set<MaterialState> states) {
-                    /* if (states.contains(MaterialState.pressed)) {
-                      return Colors.teal.shade100;
-                    }
+                    /*
                     //source: https://flutterforyou.com/how-to-change-the-color-of-elevatedbutton-in-flutter/
-                    else {*/
+                     */
                     return Colors.teal.shade300;
-                    //}
                   },
                 ), //bg color
               ),
@@ -164,6 +164,102 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+
+/*
+*
+* Emojis
+*
+* Declaring Drop Down List here
+*
+ */
+List<DropdownMenuItem<String>> get dropdownItems{
+  List<DropdownMenuItem<String>> menuItems = [
+    //const DropdownMenuItem(child: Icon(CupertinoIcons.smiley),value: "Smiley"),
+    /*
+    ------------------------SMILE--------------
+     */
+    const DropdownMenuItem(child:
+        Text("😃",
+          style: TextStyle(fontSize: 35),
+         textAlign: TextAlign.center,),
+        value: "Smile"),
+
+    /*
+    ---------------------ANGRY---------------------
+     */
+    const DropdownMenuItem(child:
+        Text("😠",
+          style: TextStyle(fontSize: 35),
+          textAlign: TextAlign.center,),
+        value: "Angry"),
+
+    /*
+    ----------------------VOMIT---------------------
+     */
+    const DropdownMenuItem(child:
+        Text("🤮",
+          style: TextStyle(fontSize: 35),
+          textAlign: TextAlign.center,),
+        value: "Vomit"),
+
+    /*
+    ---------------WINK-------------------
+     */
+    const DropdownMenuItem(child:
+    Text("😉",
+      style: TextStyle(fontSize: 35),
+      textAlign: TextAlign.center,),
+        value: "Wink"),
+
+    /*
+    -----------------------LOVE-----------------------
+     */
+    const DropdownMenuItem(child:
+    Text("❤️",
+      style: TextStyle(fontSize: 35),
+      textAlign: TextAlign.center,),
+        value: "Love"),
+
+    /*
+    ----------------JOKE----------------
+     */
+    const DropdownMenuItem(child:
+    Text("🤪",
+      style: TextStyle(fontSize: 35),
+      textAlign: TextAlign.center,),
+        value: "Joke"),
+
+    /*
+    -----------------SAD--------------------
+     */
+    const DropdownMenuItem(child:
+    Text("😞",
+      style: TextStyle(fontSize: 35),
+      textAlign: TextAlign.center,),
+        value: "Sad"),
+
+    /*
+    ---------------------NERVOUS---------------
+     */
+    const DropdownMenuItem(child:
+    Text("😬",
+      style: TextStyle(fontSize: 35),
+      textAlign: TextAlign.center,),
+        value: "Nervous"),
+
+    /*
+    ---------------------COOL---------------
+     */
+    const DropdownMenuItem(child:
+    Text("😎",
+      style: TextStyle(fontSize: 35),
+      textAlign: TextAlign.center,),
+        value: "Nervous"),
+  ];
+  return menuItems;
+}
+String selectedValue = "Smile";
+
 /*------ SECOND SCREEN WHERE ANSWERS WILL BE RECORDED------*/
 class AppPage extends StatelessWidget {
   const AppPage({Key? key}) : super(key: key);
@@ -176,16 +272,106 @@ class AppPage extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              const Text( //to align the uwindsor image below.
+                '\n\n\n\n',
+                 // '😀 😃 😄 😁 😆 😅 😂 🤣 🥲 ☺️ 😊 😇 🙂 🙃 😉 😌 😍 🥰 😘 😗 😙 😚 😋 😛 😝 😜 🤪 🤨',
+              style: TextStyle(fontSize: 45),
+              textAlign: TextAlign.center,
+              ),
+
+              DropdownButton(
+                  value: selectedValue,
+                  dropdownColor: Colors.grey.shade100,
+                  icon: const Icon(Icons.arrow_drop_down),
+                  onChanged: (String? newValue){
+                    setState(newValue!);
+                  },
+                  items: dropdownItems,
+                  //update()
+              ),
+
+              Text( //to align the uwindsor image below.
+                '\n\n\n\n' +
+                selectedValue,
+                style: const TextStyle(fontSize: 45),
+                textAlign: TextAlign.center,
+              ),
+
+
               ElevatedButton( /////THIS IS A BUTTON
                 onPressed: () {
-                  // Navigate back to first route when tapped.
-                },
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const End_Page()),
+                      /*currently goes to the next page regardless. To be edited after connecting with Firebase*/
+                    );
+                  }, //onPressed.
                 child: const Text('Submit Answers'),
                 ),
              ]
         )
+      ),
+    );
+  }
+
+  void setState(String newValue) {
+    selectedValue = newValue;
+
+  }
+}
+
+/*------ Third SCREEN only string will appear------*/
+class End_Page extends StatelessWidget {
+  const End_Page({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Moody'),
+      ),
+      body: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  'Thanks for your response.\n Please exit the application\n\n',
+                  textAlign: TextAlign.center,
+            style: TextStyle (
+              color: Colors.blueGrey,
+              fontSize: 25 ),
+                ),
+                ElevatedButton( /////THIS IS AN EXIT BUTTON
+                  style: ButtonStyle (
+                    elevation: MaterialStateProperty.all(10),
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                          (Set<MaterialState> states) {
+                        /*
+                    //source: https://flutterforyou.com/how-to-change-the-color-of-elevatedbutton-in-flutter/
+                     */
+                        return Colors.red.shade900;
+                      },
+                    ), //bg color
+                  ),
+                  onPressed: () {
+                    exit(0);
+                    // Navigate back to first route when tapped.
+                  },
+
+                  child: const Text(
+                      'X',
+                      textAlign: TextAlign.center,
+                      // style: TextStyle(fontSize: 25),
+                      style: TextStyle (
+                          color: Colors.white,
+                          fontSize: 15),
+                         // fontStyle: FontStyle.italic)
+                     ),
+                ),
+              ],
+          ),
       ),
     );
   }
