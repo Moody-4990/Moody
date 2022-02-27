@@ -7,7 +7,7 @@ A COMP-4990 Project in Computer Science at the University of Windsor.
 
 
 
-<! -- ## Getting Started -->
+<! --- ## Getting Started -->
 
 This project is a starting point for a Flutter application.
 
