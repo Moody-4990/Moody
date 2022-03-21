@@ -1,17 +1,17 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Alina\\Dropbox\\My PC (DESKTOP-BNE2URN)\\Desktop\\COMP_4990_Moody_Dev\\moody\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "C:\\Users\\Alina\\Dropbox\\My PC (DESKTOP-BNE2URN)\\Desktop\\COMP-4990\\moody\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Alina\\Dropbox\\My PC (DESKTOP-BNE2URN)\\Desktop\\COMP_4990_Moody_Dev\\moody\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\Alina\\Dropbox\\My PC (DESKTOP-BNE2URN)\\Desktop\\COMP-4990\\moody\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
-                        "startOffsets": "175,820",
+                        "startOffsets": "172,806",
                         "endLines": "7,16",
                         "endColumns": "12,12",
-                        "endOffsets": "471,986"
+                        "endOffsets": "464,970"
                     },
                     "to": {
                         "startLines": "2,7",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Alina\\Dropbox\\My PC (DESKTOP-BNE2URN)\\Desktop\\COMP_4990_Moody_Dev\\moody\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-mk\\values-mk.xml",
+            "outputFile": "C:\\Users\\Alina\\Dropbox\\My PC (DESKTOP-BNE2URN)\\Desktop\\COMP-4990\\moody\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-mk\\values-mk.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Alina\\.gradle\\caches\\transforms-2\\files-2.1\\92a5d76b7bcc94f9d5d7f92b070ae281\\jetified-play-services-basement-17.1.0\\res\\values-mk\\values.xml",
