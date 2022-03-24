@@ -190,7 +190,7 @@ class _SignupScreenState extends State<SignupScreen> {
     final Material signupButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Colors.yellow,
+      color: Color(0xffffde5a),
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
@@ -214,7 +214,7 @@ class _SignupScreenState extends State<SignupScreen> {
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back,
-              color: Colors.yellow,
+              color: Color(0xffffde5a),
             ),
             onPressed: () {
               //passes to root, pops off to login
