@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:moody/model/user_model.dart';
 import 'package:moody/screens/dashboard_screen.dart';
+import 'package:moody/navigation_bar.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -316,7 +317,7 @@ class _SignupScreenState extends State<SignupScreen> {
     Fluttertoast.showToast(msg: "Account created successfully");
     Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => const DashboardScreen()),
+        MaterialPageRoute(builder: (context) => NavBar()),
         (route) => false);
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_this
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:moody/screens/login_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({Key? key}) : super(key: key);
+  
 
   @override
   _DashboardScreenState createState() => _DashboardScreenState();
@@ -53,7 +56,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
-              Text("${loggedinUser.firstName} ${loggedinUser.lastName}",
+              Text('Hello ${loggedinUser.firstName} ${loggedinUser.lastName}!',
                   style: const TextStyle(
                     color: Colors.black45,
                     fontWeight: FontWeight.w500,
@@ -86,3 +89,4 @@ class _DashboardScreenState extends State<DashboardScreen> {
 }
 
 //contributed By: AN
+//${loggedinUser.firstName} ${loggedinUser.lastName}",

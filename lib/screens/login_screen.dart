@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:moody/screens/dashboard_screen.dart';
 import 'package:moody/screens/signup_screen.dart';
+import 'package:moody/navigation_bar.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -186,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
           .then((uid) => {
                 Fluttertoast.showToast(msg: "Login Successful"),
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const DashboardScreen())),
+                    builder: (context) => NavBar())),
               })
           .catchError((e) {
         Fluttertoast.showToast(msg: e!.message);
