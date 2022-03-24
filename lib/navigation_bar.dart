@@ -31,6 +31,7 @@ class _NavBarState extends State<NavBar> {
         child: _screenOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xffffde5a),
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem( icon: Icon(Icons.home), label: "Home",),
