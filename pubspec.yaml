@@ -68,6 +68,7 @@ flutter:
 
   assets:
     - assets/circ_moody_logo.png
+    - assets/Moody_splashscreen_logo.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

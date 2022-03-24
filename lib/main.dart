@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:moody/screens/splash.dart';
 import 'package:moody/screens/login_screen.dart';
 
 Future<void> main() async {
@@ -15,11 +16,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return MaterialApp(
-      title: 'LogIn',
+      title: 'Moody App',
       theme: ThemeData(
         primarySwatch: Colors.yellow,
       ),
-      home: const LoginScreen(),
+      home: const splashScreen(),
     );
   }
 

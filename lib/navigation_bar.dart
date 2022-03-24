@@ -26,7 +26,7 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      backgroundColor: Color(0xffffde5a),
       body: Center(
         child: _screenOptions.elementAt(_selectedIndex),
       ),

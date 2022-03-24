@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final Material loginButton = Material(
       elevation: 5,
       borderRadius: BorderRadius.circular(30),
-      color: Colors.yellow,
+      color: Color(0xffffde5a),
       child: MaterialButton(
         padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
@@ -161,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: const Text(
                             " SignUp",
                             style: TextStyle(
-                                color: Colors.yellow,
+                                color: Color(0xffffde5a),
                                 fontWeight: FontWeight.w400,
                                 fontSize: 15),
                           ),
