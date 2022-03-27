@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:moody/screens/dashboard_screen.dart';
 import 'package:moody/screens/signup_screen.dart';
 import 'package:moody/navigation_bar.dart';
 
@@ -105,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
           //    MaterialPageRoute(builder: (context) => const DashboardScreen()));
         },
         child: const Text(
-          "Login",
+          "Log In",
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
@@ -159,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         const SignupScreen()));
                           },
                           child: const Text(
-                            " SignUp",
+                            " Sign Up",
                             style: TextStyle(
                                 color: Color(0xffffde5a),
                                 fontWeight: FontWeight.w400,
