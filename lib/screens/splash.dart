@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moody/screens/logInsignUp.dart';
 import 'package:moody/screens/login_screen.dart';
 import 'package:moody/screens/logInsignUp.dart';
 
@@ -21,8 +20,8 @@ class _splashScreenState extends State<splashScreen> {
 
   _navigatetologinSignup() async {
     //giving the delay time for the splash screen
-    await Future.delayed(Duration(seconds: 3),);
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    await Future.delayed(Duration(seconds: 5),);
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => logInsignUp()));
   }
 
   @override
