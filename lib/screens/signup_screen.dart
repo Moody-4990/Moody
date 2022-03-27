@@ -199,7 +199,7 @@ class _SignupScreenState extends State<SignupScreen> {
           signUp(emailEditController.text, passwordEditController.text);
         },
         child: const Text(
-          "Signup",
+          "Sign Up",
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
@@ -211,8 +211,9 @@ class _SignupScreenState extends State<SignupScreen> {
         backgroundColor: Colors.white,
         /*
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.yellow,
           elevation: 0,
+          /*
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back,
@@ -223,6 +224,7 @@ class _SignupScreenState extends State<SignupScreen> {
               Navigator.of(context).pop();
             },
           ),
+          */
         ),
         */
         body: Center(
@@ -285,7 +287,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                         const LoginScreen()));
                             },
                             child: const Text(
-                              " LogIn",
+                              " Log In",
                               style: TextStyle(
                                 color: Color(0xffffde5a),
                                 fontWeight: FontWeight.w400,
