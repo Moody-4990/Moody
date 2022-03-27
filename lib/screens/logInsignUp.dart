@@ -24,7 +24,7 @@ class _logInsignUpState extends State<logInsignUp> {
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
         },
         child: const Text(
-          "LogIn",
+          "Log In",
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 20, color: Color(0xffffde5a), fontWeight: FontWeight.bold),
@@ -44,7 +44,7 @@ class _logInsignUpState extends State<logInsignUp> {
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => SignupScreen()));
         },
         child: const Text(
-          "SignUp",
+          "Sign Up",
           textAlign: TextAlign.center,
           style: TextStyle(
               fontSize: 20, color: Color(0xffffde5a), fontWeight: FontWeight.bold),
