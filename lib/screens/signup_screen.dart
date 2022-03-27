@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:moody/model/user_model.dart';
 import 'package:moody/screens/dashboard_screen.dart';
 import 'package:moody/navigation_bar.dart';
+import 'package:moody/screens/login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -208,6 +209,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
     return Scaffold(
         backgroundColor: Colors.white,
+        /*
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -222,6 +224,7 @@ class _SignupScreenState extends State<SignupScreen> {
             },
           ),
         ),
+        */
         body: Center(
           child: SingleChildScrollView(
             child: Container(
@@ -243,7 +246,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           )),
 
                       //provides a highted box between each field
-                      const SizedBox(height: 45),
+                      const SizedBox(height: 10),
 
                       //fname field
                       firstNameField,
@@ -267,8 +270,29 @@ class _SignupScreenState extends State<SignupScreen> {
 
                       //signupbuttom
                       signupButton,
-                      const SizedBox(
-                        height: 15,
+                      const SizedBox(height: 15),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Text("Already have an account?"),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const LoginScreen()));
+                            },
+                            child: const Text(
+                              " LogIn",
+                              style: TextStyle(
+                                color: Color(0xffffde5a),
+                                fontWeight: FontWeight.w400,
+                                fontSize: 15),
+                            ),
+                          )
+                        ],
                       )
                     ],
                   ),
