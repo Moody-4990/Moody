@@ -34,7 +34,9 @@ class _splashScreenState extends State<splashScreen> {
         children: [
           Image.asset("assets/Moody_splashscreen_logo.png", height: 300,),
           const SizedBox(height: 30,),
+          /*
           const CircularProgressIndicator(color: Colors.white,),
+          */
         ],
       ),
       ),
