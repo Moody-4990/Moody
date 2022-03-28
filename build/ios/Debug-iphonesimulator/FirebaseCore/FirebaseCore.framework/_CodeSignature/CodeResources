@@ -6,11 +6,11 @@
 	<dict>
 		<key>Headers/FIRApp.h</key>
 		<data>
-		bs+mZbpB/+IipeJfATxIAH8zr9o=
+		KbRBsqMrHKXWleGzlsLm/qfJpx0=
 		</data>
 		<key>Headers/FIRConfiguration.h</key>
 		<data>
-		YsiMiUSSzVKkpDvcavbZDBVX7qI=
+		nAQ0+tts+cDkPKImQw4tpJa2JUo=
 		</data>
 		<key>Headers/FIRLoggerLevel.h</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>Headers/FIROptions.h</key>
 		<data>
-		iXmXQ3Ir/F7GN0kR31HMYw07P9Q=
+		ZDbyuquW8ihMRBx7REMKEuKfbh4=
 		</data>
 		<key>Headers/FIRVersion.h</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		VsLCtbrvUki1HB9YwsUKCZz5Ps4=
+		IBCZ7JQci/Wyq0xOwRVYYJ61fvU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -91,22 +91,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			bs+mZbpB/+IipeJfATxIAH8zr9o=
+			KbRBsqMrHKXWleGzlsLm/qfJpx0=
 			</data>
 			<key>hash2</key>
 			<data>
-			OUyUXB5zH7zPSAXVp4kt2q93P+B+DCjsqB2zPq97Hw8=
+			2e3mRqUQBu6+zuoPooAm3RbnueEka+vCUwlDJJWXf2E=
 			</data>
 		</dict>
 		<key>Headers/FIRConfiguration.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			YsiMiUSSzVKkpDvcavbZDBVX7qI=
+			nAQ0+tts+cDkPKImQw4tpJa2JUo=
 			</data>
 			<key>hash2</key>
 			<data>
-			hgFMWIci1/HF1YT6aBUQZB44wlN/Jwi8YjWfDXOLktI=
+			gnE5tNgjY4oWsq1cfP5YE6b+7lvX4SjY2PzCD21KBPM=
 			</data>
 		</dict>
 		<key>Headers/FIRLoggerLevel.h</key>
@@ -124,11 +124,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			iXmXQ3Ir/F7GN0kR31HMYw07P9Q=
+			ZDbyuquW8ihMRBx7REMKEuKfbh4=
 			</data>
 			<key>hash2</key>
 			<data>
-			ONtXZEZ+9gyozpPAop457EUoHSeGbj48im3ZWcj+dWQ=
+			VF6FN5Qjr9GtQPh8Tq0HKALAuHEa8qAwEPCZ+oNG+X4=
 			</data>
 		</dict>
 		<key>Headers/FIRVersion.h</key>

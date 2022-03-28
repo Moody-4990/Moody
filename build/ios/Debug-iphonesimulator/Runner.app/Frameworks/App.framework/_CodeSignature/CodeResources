@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		oG5/OGn+vw7vp/nu5DUDoZJ4nFc=
+		kz55wYn59LgWquWg0qzFwnqDy3k=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -18,7 +18,23 @@
 		</data>
 		<key>flutter_assets/NOTICES.Z</key>
 		<data>
-		0nPUx6YCJovdDnjGsDQzmvZ74OU=
+		+N2nJDBNShEqeAsOcvlwMDVuFZw=
+		</data>
+		<key>flutter_assets/assets/images/.DS_Store</key>
+		<data>
+		2BmMW+/66wfxh1MlzpaP+Ju6dTs=
+		</data>
+		<key>flutter_assets/assets/images/UofW_logo_2.png</key>
+		<data>
+		5/6XdgFUuhUM3vlnW524c6YD2Co=
+		</data>
+		<key>flutter_assets/assets/images/UofW_logo_3.jpeg.sb-2c4c0078-JpBleJ</key>
+		<data>
+		m/JLf8mnyJrrHl9B1/7yqP9Q9Vk=
+		</data>
+		<key>flutter_assets/assets/images/UofW_logo_3.png</key>
+		<data>
+		wFrTQIkGbB2rXmJOTQsCmoCfJm0=
 		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
 		<data>
@@ -30,7 +46,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		TlgTpNgFJjOlxoVYg5t0zzZALvY=
+		gcHmIaMVVwxamUZ+SKc/qJkvLB8=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -47,11 +63,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			oG5/OGn+vw7vp/nu5DUDoZJ4nFc=
+			kz55wYn59LgWquWg0qzFwnqDy3k=
 			</data>
 			<key>hash2</key>
 			<data>
-			Sps95+7JukayebvM0TLjL1LW1VXXndpKp/O8tOm9ZR8=
+			OjSaNDHQudY+ArRdQePtnNxZCaCWBeWfv/nrkCKagRQ=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -69,11 +85,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0nPUx6YCJovdDnjGsDQzmvZ74OU=
+			+N2nJDBNShEqeAsOcvlwMDVuFZw=
 			</data>
 			<key>hash2</key>
 			<data>
-			BGLFKlogl+A1qR133KEBIP83v5xH3sPPtYGxGGZWPY8=
+			9V0bVDpNI+J+a+HNsztIcwARpDYP1IKMt62MYg7pEKg=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/UofW_logo_2.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			5/6XdgFUuhUM3vlnW524c6YD2Co=
+			</data>
+			<key>hash2</key>
+			<data>
+			38EWKYz4EZzi4DWn+faykSsoTJIWzkScFAyfTWfkWps=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/UofW_logo_3.jpeg.sb-2c4c0078-JpBleJ</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			m/JLf8mnyJrrHl9B1/7yqP9Q9Vk=
+			</data>
+			<key>hash2</key>
+			<data>
+			xuDoMPxTLW+WTG+bUVIxXMQlDZIA8b8rpCbl3rm8Fuw=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/UofW_logo_3.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			wFrTQIkGbB2rXmJOTQsCmoCfJm0=
+			</data>
+			<key>hash2</key>
+			<data>
+			5ZwJw02BlUP8YBlBqSVBa+MAI6HuWn/0zo1Ei4TffEg=
 			</data>
 		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.otf</key>
@@ -102,11 +151,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			TlgTpNgFJjOlxoVYg5t0zzZALvY=
+			gcHmIaMVVwxamUZ+SKc/qJkvLB8=
 			</data>
 			<key>hash2</key>
 			<data>
-			k+tZuAHWe1/3zPQIzUsFaGVgDw2Z1KpL0vQ0gfwQb8Y=
+			d+9Jzrq179jRZzDuE+qs1WDf9wMkQmxxWBxPKINfBkQ=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

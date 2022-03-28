@@ -4,6 +4,7 @@ import 'dart:io';
 //import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/src/material/material_state.dart';
+import 'package:moody/screens/survey_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -121,9 +122,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ), //bg color
               ),
               onPressed: () {
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SurveyScreen()),
+                    (route) => false,
+                /*Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const AppPage()),
+                  MaterialPageRoute(builder: (context) => const AppPage()), */
                   /*currently goes to the next page regardless. To be edited after connecting with Firebase*/
                 );
               }, //onPressed
@@ -148,10 +153,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 ), //bg color
               ),
               onPressed: () {
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SurveyScreen()),
+                    (route) => false);
+                /*Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const AppPage()),
-                );
+                );*/
               }, //onPressed
 
               child: const Text('Anonymous Login ->'),
@@ -172,7 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
 * Declaring Drop Down List here
 *
  */
-List<DropdownMenuItem<String>> get dropdownItems{
+/*List<DropdownMenuItem<String>> get dropdownItems{
   List<DropdownMenuItem<String>> menuItems = [
     //const DropdownMenuItem(child: Icon(CupertinoIcons.smiley),value: "Smiley"),
     /*
@@ -258,10 +267,10 @@ List<DropdownMenuItem<String>> get dropdownItems{
   ];
   return menuItems;
 }
-String selectedValue = "Smile";
+String selectedValue = "Smile"; */
 
 /*------ SECOND SCREEN WHERE ANSWERS WILL BE RECORDED------*/
-class AppPage extends StatelessWidget {
+/*class AppPage extends StatelessWidget {
   const AppPage({Key? key}) : super(key: key);
 
   @override
@@ -319,11 +328,11 @@ class AppPage extends StatelessWidget {
   void setState(String newValue) {
     selectedValue = newValue;
 
-  }
-}
+  }*/
+//}
 
 /*------ Third SCREEN only string will appear------*/
-class End_Page extends StatelessWidget {
+/*class End_Page extends StatelessWidget {
   const End_Page({Key? key}) : super(key: key);
 
   @override
@@ -375,4 +384,4 @@ class End_Page extends StatelessWidget {
       ),
     );
   }
-}
+}*/
