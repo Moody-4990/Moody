@@ -3,78 +3,131 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:moody/main.dart';
 import 'package:moody/screens/survey_screen.dart';
-//import 'package:map_view/map_view.dart';
-
 //https://github.com/iampawan/FlutterGoogleMaps
-
-//import 'package:flutter_map/plugin_api.dart' show MapState, LayerOptions;
-//import 'package:latlong2/latlong.dart' as ll;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapScreen extends StatefulWidget
 {
-  const MapScreen({Key? key}) : super(key: key);
+  //const MapScreen({Key? key}) : super(key: key);
 
+  String selected_emoji;
+  LatLng loc;
+  MapScreen({required this.selected_emoji, required this.loc});
   @override
-  _MapScreenLaunch createState() => _MapScreenLaunch();
+  _MapScreenLaunch createState() => _MapScreenLaunch(selected_emoji, loc);
 }
 
 class _MapScreenLaunch extends State <MapScreen>
 {
-  /*static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
 
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);*/
-
-  /*var buildings = new List(9); //list of pins
-  buildings.add('Caw Student Centre');
-  buildings[1] = 'Chrysler Hall';*/
-
-  //CameraPosition _initialPosition = CameraPosition(target: LatLng(26.8206, 30.8025));
-  //Completer<GoogleMapController> _controller = Completer();
-
- // MapView.setApiKey(AIzaSyBin6DqxbPqLkwzqyZ2zk7j8LqXP3SPsk4);
   late GoogleMapController mapController;
+  LatLng startLocation = LatLng(42.30627912998773, -83.0667245381944);
 
-  final LatLng _center = const LatLng(45.521563, -122.677433);
+  LatLng loc;
+  var selected_emoji;
+  _MapScreenLaunch(this.selected_emoji, this.loc);
+  //LatLng chosenLocation = LatLng(42.306646541099276, -83.06853511164111);
 
-  //late GoogleMapController tryController;
+  late BitmapDescriptor custom_icon;
+  Set<Marker> markers = new Set();
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+  @override
+  void initState()
+  {
+    super.initState();
+    setCustomMarker();
   }
-  LatLng startLocation = LatLng(27.6602292, 85.308027);
+
+  /*
+  -------------- C U S T O M   M A R K E R ----------
+   */
+  void setCustomMarker() async
+  {
+    //print(selected_emoji);
+    if(selected_emoji == "Happy")
+      {
+        custom_icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/markers/smile.png');
+      } //smile
+    else if(selected_emoji == "Angry")
+    {
+      custom_icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/markers/angry.png');
+    } //angry
+    else if(selected_emoji == "Ew")
+    {
+      custom_icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/markers/vomit.png');
+    } //Ew
+    else if(selected_emoji == "Flirty")
+    {
+      custom_icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/markers/wink.png');
+    } //wink
+    else if(selected_emoji == "Love")
+    {
+      custom_icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/markers/heart.png');
+    } //love
+    else if(selected_emoji == "Jokster")
+    {
+      custom_icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/markers/goofy.png');
+    } //goofy
+    else if(selected_emoji == "Sad")
+    {
+      custom_icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/markers/sad.png');
+    } //sad
+    else if(selected_emoji == "Nervous")
+    {
+      custom_icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/markers/nervous.png');
+    } //nervous
+    else if(selected_emoji == "Cool")
+    {
+      custom_icon = await BitmapDescriptor.fromAssetImage(ImageConfiguration(), 'assets/markers/cool.png');
+    } //cool
+  }
+  /*
+  ----------------------------------------------------
+   */
+
+
+  /*
+  --------------O N   M A P   C R E A T E D ----------
+   */
+  void _onMapCreated(GoogleMapController controller)
+  {
+    mapController = controller;
+    setState((){
+        markers.add(
+          Marker(
+              markerId: MarkerId('Smile'),
+              position: loc, //to be fixed
+              icon: custom_icon,
+        ));
+    });
+  }
+  /*
+  ----------------------------------------------------
+   */
+
+  LatLng CAW = LatLng(42.306646541099276, -83.06853511164111);
+  LatLng Chrysler = LatLng(42.306797978474, -83.06633849834193);
+  LatLng Dillon = LatLng(42.30627482963498, -83.06763226634442);
+  LatLng Education = LatLng(42.30716968684932, -83.06599411405351);
+  LatLng Erie = LatLng(42.30531800669573, -83.06527742242625);
+  LatLng Essex = LatLng(42.30538684336386, -83.0668969593502);
+  LatLng Leddy = LatLng(42.30787179668103, -83.06780911233038);
+  LatLng Odette = LatLng(42.305290472007385, -83.06434665407915);
+  LatLng Toldo = LatLng(42.306659281881785, -83.0648152919935);
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Moody'),
       ),
-      /*floatingActionButton: FloatingActionButton(
-        child: Text("Move"),
-        onPressed: (){
-          LatLng newlatlang = LatLng(27.7149298,85.2903343);
-          tryController.animateCamera(
-              CameraUpdate.newCameraPosition(
-                  CameraPosition(target: newlatlang, zoom: 17)
-                //17 is new zoom level
-              )
-          );
-          //move position of map camera to new location
-        },
-      ),*/
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            /*const Text(
+            const Text(
               'Thanks for your response.\n Please exit the application\n',
               textAlign: TextAlign.center,
               style: TextStyle (
@@ -108,18 +161,18 @@ class _MapScreenLaunch extends State <MapScreen>
                 // fontStyle: FontStyle.italic)
               ), //text for X
             ), //elevated button for exiting
-            */
         /*---------------------M-A-P----H-E-R-E-----------------------------------*/
+            const Text("\n"),
             Container(
-              height: MediaQuery.of(context).size.height-103,
+              height: MediaQuery.of(context).size.height-373,
               width: MediaQuery.of(context).size.width,
               child: GoogleMap(
-                zoomGesturesEnabled: true,
-
+                markers: markers,
+                zoomGesturesEnabled: false,
                 initialCameraPosition: CameraPosition(
-                  //target: LatLng(37.4219999, -122.0862462),
                   target: startLocation,
-                  zoom: 116,
+                  zoom: 17, //to change to new loc after we figure out how
+                  //to get strings across pages
                 ), //initial camera position
 
                 mapType: MapType.normal, //map type
@@ -128,63 +181,8 @@ class _MapScreenLaunch extends State <MapScreen>
                     _onMapCreated(controller);
                   });
                 },
-
-                /*onMapCreated: (GoogleMapController controller) {
-                  controller.showMarkerInfoWindow(MarkerId("0"));
-                },*/
-                /*circles: Set.from([
-                  Circle(
-                    circleId: CircleId("0"),
-                    //center: LatLng(...),
-                    radius: 1000,
-                  )
-                ]), */
-               /* markers: {
-                  Marker(
-                      markerId: MarkerId("0"),
-                      //position: LatLng(..),
-                      //infoWindow: InfoWindow(title: ...)
-                  )
-                },*/
-
-
-               // options: GoogleMapOptions(
-
-                //),
               ), //googlemap
             ),//container
-
-
-
-
-        /*-----------B-A-C-K---T-O---D-A-S-H-B-O-A-R-D---B-U-T-T-O-N------------------*/
-           /* const Text('\n\n'),
-            ElevatedButton( /////THIS IS A BACK TO DASHBOARD BUTTON BUTTON
-              style: ButtonStyle (
-                elevation: MaterialStateProperty.all(10),
-                backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                    /*
-                    //source: https://flutterforyou.com/how-to-change-the-color-of-elevatedbutton-in-flutter/
-                     */
-                    return Colors.lime;
-                  },
-                ), //bg color
-              ), //button style
-              onPressed: () {
-                // Navigate back to first route when tapped.
-              }, //on pressed
-
-              child: const Text(
-                'Back to Dashboard',
-                textAlign: TextAlign.center,
-                // style: TextStyle(fontSize: 25),
-                style: TextStyle (
-                    color: Colors.black,
-                    fontSize: 15),
-                // fontStyle: FontStyle.italic)
-              ), //text for X
-            ), //elevated button for exiting */
           ], //children widget
         ), //child column
       ), //body center
