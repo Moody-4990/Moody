@@ -240,6 +240,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
+                      const SizedBox(height: 15),
                       SizedBox(
                           height: 160,
                           child: Image.asset(
