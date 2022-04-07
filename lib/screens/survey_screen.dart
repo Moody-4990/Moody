@@ -1,27 +1,33 @@
 import 'package:flutter/cupertino.dart';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:moody/main.dart';
 import 'package:moody/screens/map_screen.dart';
 import 'package:moody/screens/survey_screen.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
+import 'package:path_provider/path_provider.dart';
+
+
+
+//final File jsonFile = File('/Users/himaniraval/moody/lib/screens/data.json');
+//List<JsonFileManager> listItems = [];
+//late DateTime stamp;
 
 class SurveyScreen extends StatefulWidget
 {
   const SurveyScreen({Key? key}) : super(key: key);
   @override
   _SurveyScreenState createState() => _SurveyScreenState();
-
 } //class SurveyScreen
 
 class _SurveyScreenState extends State<SurveyScreen> {
-
   String selected_emoji = "Happy";
   String selected_location = "CAW Student Center";
-
   LatLng startLocation = LatLng(42.30627912998773, -83.0667245381944);
+
   /*
    Buildings here
   https://www.fluttercampus.com/guide/73/how-to-add-multiple-markers-on-google-map-flutter/
@@ -36,40 +42,108 @@ class _SurveyScreenState extends State<SurveyScreen> {
   LatLng Odette = LatLng(42.305290472007385, -83.06434665407915);
   LatLng Toldo = LatLng(42.306659281881785, -83.0648152919935);
 
-  LatLng loc = LatLng(0,0);
+  LatLng loc = LatLng(0, 0);
 
   var selected_build = "";
   late GoogleMapController mapController;
 
-  //String err = "";
+  String store = "";
+
+  //dataStorage inst = dataStorage();
+  /*
+  ---------------------M Y  V A R I A B L E S-------------------------
+   */
+  late File DataFile;
+  late Directory direct;
+  bool isOpen = false;
+  String file_name = "userData.txt";
+  String hold = "";
+  String time_stamp = "";
+
+  /*
+  <key>LSSupportsOpeningDocumentsInPlace</key>
+    <true/>
+    <key>UIFileSharingEnabled</key>
+    <true/>
+   */
+
+  @override
+  void initState() {
+    super.initState();
+    getApplicationSupportDirectory().then((Directory directory) {
+      direct = directory;
+      print(direct.toString());
+      DataFile = new File(direct.path + "/" + file_name);
+      DataFile.createSync();
+      DataFile.exists().then((bool something) {
+        isOpen = something;
+        //hold = DataFile.readAsStringSync();
+      });
+      if (isOpen) {
+        this.setState(() {
+          hold = DataFile.readAsStringSync();
+        }); //setState
+      } //ifStatement
+    }); //getapplicationdirectory
+  } //InitState
+
+
+  String readFromDataFile() {
+    print("filepath: $DataFile");
+    String content_DataFile = DataFile.readAsStringSync();
+    print("Content: $content_DataFile");
+    return content_DataFile;
+  }
+
+  writeToDataFile(String emoji, String loc, String time_stamp) {
+    String _append = "{Emoji: $emoji Location: $loc Time: $time_stamp}";
+    String old = readFromDataFile();
+    String add = "";
+    add = "$old\n$_append";
+    print("add: $add");
+    DataFile.writeAsString(add);
+  }
+
+  /*
+  -----------------------------------------------------------------------
+   */
+
+
   final Set<Marker> markers = new Set();
-  Set<Marker> getmarkers() { //markers to place on map
+
+  Set<Marker> getmarkers() {
+    //markers to place on map
     setState(() {
       markers.add(Marker( //add first marker
         markerId: MarkerId(CAW.toString()),
-        position: CAW, //position of marker
+        position: CAW,
+        //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'CAW Student Centre',
           //snippet: 'My Custom Subtitle',
-        ), //info window
-        onTap: (){
+        ),
+        //info window
+        onTap: () {
           setState(() {
             selected_build = "CAW Student Center";
             loc = CAW;
             //print(selected_build);
           });
-        }, //onTap
+        },
+        //onTap
         icon: BitmapDescriptor.defaultMarker, //Icon for Marker
       )); //line 32 marker-add //CAW
 
       markers.add(Marker( //add first marker
         markerId: MarkerId(Chrysler.toString()),
-        position: Chrysler, //position of marker
+        position: Chrysler,
+        //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Chrysler Hall',
           //snippet: 'My Custom Subtitle',
-        ), //info window
-        onTap: (){
+        ),
+        //info window
+        onTap: () {
           setState(() {
             selected_build = "Chrysler Hall";
             loc = Chrysler;
@@ -81,12 +155,14 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
       markers.add(Marker( //add first marker
         markerId: MarkerId(Dillon.toString()),
-        position: Dillon, //position of marker
+        position: Dillon,
+        //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Dillon Hall',
           //snippet: 'My Custom Subtitle',
-        ), //info window
-        onTap: (){
+        ),
+        //info window
+        onTap: () {
           setState(() {
             selected_build = "Dillon Hall";
             loc = Dillon;
@@ -98,12 +174,14 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
       markers.add(Marker( //add first marker
         markerId: MarkerId(Education.toString()),
-        position: Education, //position of marker
+        position: Education,
+        //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Education Building',
           //snippet: 'My Custom Subtitle',
-        ), //info window
-        onTap: (){
+        ),
+        //info window
+        onTap: () {
           setState(() {
             selected_build = "Education Building";
             loc = Education;
@@ -115,12 +193,14 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
       markers.add(Marker( //add first marker
         markerId: MarkerId(Erie.toString()),
-        position: Erie, //position of marker
+        position: Erie,
+        //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Erie Hall',
           //snippet: 'My Custom Subtitle',
-        ), //info window
-        onTap: (){
+        ),
+        //info window
+        onTap: () {
           setState(() {
             selected_build = "Erie Hall";
             loc = Erie;
@@ -132,12 +212,14 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
       markers.add(Marker( //add first marker
         markerId: MarkerId(Essex.toString()),
-        position: Essex, //position of marker
+        position: Essex,
+        //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Essex Hall',
           //snippet: 'My Custom Subtitle',
-        ), //info window
-        onTap: (){
+        ),
+        //info window
+        onTap: () {
           setState(() {
             selected_build = "Essex Hall";
             loc = Essex;
@@ -149,12 +231,14 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
       markers.add(Marker( //add first marker
         markerId: MarkerId(Leddy.toString()),
-        position: Leddy, //position of marker
+        position: Leddy,
+        //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Leddy Library',
           //snippet: 'My Custom Subtitle',
-        ), //info window
-        onTap: (){
+        ),
+        //info window
+        onTap: () {
           setState(() {
             selected_build = "Leddy Library";
             loc = Leddy;
@@ -166,12 +250,14 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
       markers.add(Marker( //add first marker
         markerId: MarkerId(Toldo.toString()),
-        position: Toldo, //position of marker
+        position: Toldo,
+        //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Toldo Building',
           //snippet: 'My Custom Subtitle',
-        ), //info window
-        onTap: (){
+        ),
+        //info window
+        onTap: () {
           setState(() {
             selected_build = "Toldo Building";
             loc = Toldo;
@@ -183,138 +269,32 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
       markers.add(Marker( //add first marker
         markerId: MarkerId(Odette.toString()),
-        position: Odette, //position of marker
+        position: Odette,
+        //position of marker
         infoWindow: InfoWindow( //popup info
           title: 'Odette School of Business',
           //snippet: 'My Custom Subtitle',
-        ), //info window
-        onTap: (){
+        ),
+        //info window
+        onTap: () {
           setState(() {
             selected_build = "Odette School of Business";
             loc = Odette;
             //print(selected_build);
           });
         },
-          icon: BitmapDescriptor.defaultMarker,
+        icon: BitmapDescriptor.defaultMarker,
         //icon: BitmapDescriptor.defaultMarkerWithHue(270.0), //Icon for Marker
       )); //Odette
 
     }); //setstate
 
     return markers;
-  }//getmarkers
+  } //getmarkers
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
-
-  /*Map<MarkerId, Marker> markers = <MarkerId, Marker>{
-
-  }; // CLASS MEMBER, MAP OF MARKS
-  /**/
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-
-    final marker = Marker(
-      markerId: MarkerId('place_name'),
-      position: LatLng(9.669111, 80.014007),
-      // icon: BitmapDescriptor.,
-      infoWindow: InfoWindow(
-        title: 'title',
-        snippet: 'address',
-      ),
-    );
-
-    setState(() {
-      markers[MarkerId('place_name')] = marker;
-    });
-  }
-
-  void _add() {
-    var markerIdVal = MyWayToGenerateId();
-    final MarkerId markerId = MarkerId(markerIdVal);
-
-    // creating a new MARKER
-    final Marker marker = Marker(
-      markerId: markerId,
-      position: LatLng(
-        center.latitude + sin(_markerIdCounter * pi / 6.0) / 20.0,
-        center.longitude + cos(_markerIdCounter * pi / 6.0) / 20.0,
-      ),
-      infoWindow: InfoWindow(title: markerIdVal, snippet: '*'),
-      onTap: () {
-        _onMarkerTapped(markerId);
-      },
-    );
-
-    setState(() {
-      // adding a new marker to map
-      markers[markerId] = marker;
-    });
-  }*/ //old code
-
-
-  /*var location_stored = "";
-  var address_stored = "";
-
-  late double latitude;
-  late double longitude;
-
-  get_loc() async
-  {
-      var position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-      //var last_pos = await Geolocator.getLastKnownPosition();
-      var lat = position.latitude;
-      var long = position.longitude;
-
-      latitude = lat;
-      longitude = long;
-      setState(() {
-        location_stored = "Latitude: $lat, Longitude: $long";
-      });
-      //getAddFromLatLong(position);
-      List<Placemark> placemark = await placemarkFromCoordinates(lat, long);
-      //print(placemark);
-      Placemark place = placemark[0];
-      //print(place);
-      address_stored = '${place.name}, ${place.street}, ${place.country}';
-      print(address_stored);
-  }
-
-  get_address() async
-  {
-
-  }
-
-  checkValidity(String lat, String long) async
-  {
-    String def = "Sorry our algorithm indicate that you are off campus";
-
-    if(lat == 42.30672 && long == -83.06846)
-      {
-        address_stored = "CAW Student Centre";
-      }//CAW student centre
-    else if(lat == 42.30647 && long == -83.06627)
-      {
-        address_stored = "Chrysler Hall";
-      } //Chrysler Hall
-
-  } */ //the guess location methods.
-  /*Future<void> getAddFromLatLong(Position pos) async{
-    //var pos = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    List<Placemark> placemark = await placemarkFromCoordinates(pos.latitude, pos.longitude);
-    //print(placemark);
-    Placemark place = placemark[0];
-    //print(place);
-    address_stored = '${place.name}, ${place.street}, ${place.country}';
-    print(address_stored);
-  }*/
-
-  /*
-  <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Need it for user's location</string>
-   */
-
 
   /*--------------------------L O C A T I O N S--------------------*/
   List<DropdownMenuItem<String>> get buildings {
@@ -476,171 +456,122 @@ class _SurveyScreenState extends State<SurveyScreen> {
   /**************************************************************************************/
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Moody'),
-      ), //appbar
+        appBar: AppBar(
+          title: const Text('Moody'),
+        ), //appbar
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  /**********************************************************************************/
 
-      body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              /**********************************************************************************/
-              const Text('\n'),
-              /*
-                This is for the "BACK TO DASHBOARD BUTTON"
-                 */
-              ElevatedButton( /////THIS IS A BUTTON
-                style: ButtonStyle(
-                  elevation: MaterialStateProperty.all(10),
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      /*
-                    //source: https://flutterforyou.com/how-to-change-the-color-of-elevatedbutton-in-flutter/
-                     */
-                      return Colors.grey.shade400;
-                    },
-                  ), //bg color
-                ), //back to dashboard style
+                  const Text(
+                    'How Are you Feeling today?',
+                    style: TextStyle(fontSize: 25),
+                    textAlign: TextAlign.center,
+                  ),
+                  //how are you feeling text
 
-                onPressed: () {
-                  /*Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => const MyHomePage()),
-                        (route) => false); */
-                }, //onPressed.
-                child: const Text('Back to Dashboard'),
-              ), //back to dashboard button
-              /**********************************************************************************/
-
-              const Text(
-                '\nHow Are you Feeling today?',
-                style: TextStyle(fontSize: 25),
-                textAlign: TextAlign.center,
-              ), //how are you feeling text
-
-              /*------------- e m o j i    b u t t o n --------------*/
-              Text( //to align the uwindsor image below.
+                  /*------------- e m o j i    b u t t o n --------------*/
+                  Text( //to align the uwindsor image below.
                     selected_emoji,
-                style: const TextStyle(fontSize: 20),
-                textAlign: TextAlign.center,
-              ), //text corresponding to the selected drop down menu item
+                    style: const TextStyle(fontSize: 20),
+                    textAlign: TextAlign.center,
+                  ),
+                  //text corresponding to the selected drop down menu item
 
-              DropdownButton(
-                value: selected_emoji,
-                onChanged: (String? new_mood){
-                  setState((){
-                    selected_emoji = new_mood!;
-                    //get_loc();
-                  }); //setstate
-                },//onChanged emoji
-                items: Moods,
-                dropdownColor: Colors.grey.shade100,
-                icon: const Icon(Icons.arrow_drop_down),
-              ), //emoji dropdownbutton
-              /**********************************************************************************/
+                  DropdownButton(
+                    value: selected_emoji,
+                    onChanged: (String? new_mood) {
+                      setState(() {
+                        selected_emoji = new_mood!;
+                        //get_loc();
+                      }); //setstate
+                    },
+                    //onChanged emoji
+                    items: Moods,
+                    dropdownColor: Colors.grey.shade100,
+                    icon: const Icon(Icons.arrow_drop_down),
+                  ),
+                  //emoji dropdownbutton
+                  /**********************************************************************************/
 
+                  Container(
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height - 350, //to make it fit
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width,
+                    child: GoogleMap(
+                      markers: getmarkers().toSet(),
+                      zoomGesturesEnabled: false,
+                      initialCameraPosition: CameraPosition(
+                        target: startLocation,
+                        zoom: 17,
+                      ),
+                      //initial camera position
 
-              /*-------------g u e s s    l o c a t i o n --------------*/
+                      mapType: MapType.normal,
+                      //map type
+                      // onMapCreated: _onMapCreated,
+                      onMapCreated: (
+                          controller) { //method called when map is created
+                        setState(() {
+                          _onMapCreated(controller);
+                        });
+                      },
+                      //markers: markers.values.toSet(),
+                    ), //googlemap
+                  ),
+                  //container
 
-              /*ElevatedButton( /////THIS IS A get my location BUTTON
-                onPressed: () {
-                  get_loc();
-                }, //onPressed.
-                child: const Text('Get my location ↗'),
-              ), //get my location button
-              Text(
-                //get_loc(),
-                "Coordinates: $location_stored\n",
-                //'Get my location ↗',
-                style: TextStyle(fontSize: 15,color: Colors.blue[700]),
-                textAlign: TextAlign.center,
+                  Text(
+                    //"\n" +
+                    selected_build,
+                    style: TextStyle(fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue[700]),
+                    textAlign: TextAlign.center,
+                  ),
+                  //to guess building
 
-              ),
-              Text(
-                //get_loc(),
-                "Building: $address_stored",
-                //'Get my location ↗',
-                style: TextStyle(fontSize: 15,color: Colors.blue[700]),
-                textAlign: TextAlign.center,
-              ),*/ //the button for coordinated
+                  /**********************************************************************************/
+                  //const Text('\n'),
+                  ElevatedButton( /////THIS IS A SUBMIT BUTTON
+                    onPressed: () {
+                      //readFileData();
+                      if (loc == LatLng(0, 0)) {
+                        //selected_build = "Please select a valid location";
+                      }
+                      else {
+                        DateTime now = new DateTime.now();
+                        time_stamp = now.toString();
 
-              Container(
-                height: MediaQuery.of(context).size.height-500, //to make it fit
-                width: MediaQuery.of(context).size.width,
-                child: GoogleMap(
-                  markers: getmarkers().toSet(),
-                  zoomGesturesEnabled: false,
-                  initialCameraPosition: CameraPosition(
-                    target: startLocation,
-                    zoom: 16.4,
-                  ), //initial camera position
+                       writeToDataFile(
+                           selected_emoji, selected_build, time_stamp);
 
-                  mapType: MapType.normal, //map type
-                 // onMapCreated: _onMapCreated,
-                  onMapCreated: (controller) { //method called when map is created
-                    setState(() {
-                      _onMapCreated(controller);
-                    });
-                  },
-                  //markers: markers.values.toSet(),
-                ), //googlemap
-              ), //container
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => MapScreen(
+                              selected_emoji: selected_emoji, loc: loc)),
+                              (route) => false,
+                          /*currently goes to the next page regardless. To be edited after connecting with Firebase*/
+                        ); //navigator.push
+                      }
+                    }, //onPressed.
+                    child: const Text('Submit Answers'),
+                  ),
+                  //submit button
+                  // /**********************************************************************************/
 
-              Text(
-                  "\n" +
-                selected_build,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue[700]),
-                textAlign: TextAlign.center,
-              ), //to guess building
-
-
-      /**********************************************************************************/
-
-      /*------------- l o c a t i o n    b u t t o n --------------*/
-     /* const Text(
-      '\n\nInaccurate? Please manually select your location',
-      style: TextStyle(fontSize: 23),
-      textAlign: TextAlign.center,
-      ), //Otherwise please select from list
-
-      DropdownButton(
-      value: selected_location,
-      onChanged: (String? new_location){
-      setState((){
-      selected_location = new_location!;
-      }); //setstate
-      },//onChanged location
-      items: buildings,
-      dropdownColor: Colors.grey.shade100,
-      icon: const Icon(Icons.arrow_drop_down),
-      ), */ //location dropdownbutton
-      /**********************************************************************************/
-      const Text('\n'),
-      ElevatedButton( /////THIS IS A SUBMIT BUTTON
-        onPressed: () {
-          if(loc == LatLng(0,0))
-            {
-              //selected_build = "Please select a valid location";
-            }
-          else{
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => MapScreen(selected_emoji: selected_emoji, loc: loc)),
-                  (route) => false,
-              /*currently goes to the next page regardless. To be edited after connecting with Firebase*/
-            ); //navigator.push
-          }
-        }, //onPressed.
-        child: const Text('Submit Answers'),
-      ), //submit button
-              // /**********************************************************************************/
-
-            ] //children: widget
-        ) //child: column
-      ) //body
+                ] //children: widget
+            ) //child: column
+        ) //body
     ); //scaffold
   } //build widget
-} //class _SurveyScreenState
+}//class survey

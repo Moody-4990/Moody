@@ -8,8 +8,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapScreen extends StatefulWidget
 {
-  //const MapScreen({Key? key}) : super(key: key);
-
   String selected_emoji;
   LatLng loc;
   MapScreen({required this.selected_emoji, required this.loc});
@@ -127,7 +125,7 @@ class _MapScreenLaunch extends State <MapScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
+            /*const Text(
               'Thanks for your response.\n Please exit the application\n',
               textAlign: TextAlign.center,
               style: TextStyle (
@@ -160,11 +158,11 @@ class _MapScreenLaunch extends State <MapScreen>
                     fontSize: 15),
                 // fontStyle: FontStyle.italic)
               ), //text for X
-            ), //elevated button for exiting
+            ), //elevated button for exiting */
         /*---------------------M-A-P----H-E-R-E-----------------------------------*/
-            const Text("\n"),
+            //const Text("\n"),
             Container(
-              height: MediaQuery.of(context).size.height-373,
+              height: MediaQuery.of(context).size.height-120,
               width: MediaQuery.of(context).size.width,
               child: GoogleMap(
                 markers: markers,
